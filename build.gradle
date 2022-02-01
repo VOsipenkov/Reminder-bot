@@ -1,6 +1,9 @@
 subprojects {
     apply plugin: 'application'
 
+    version = '0.2'
+    group = 'org.bot.reminder'
+
     repositories {
         mavenCentral()
     }
