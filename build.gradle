@@ -3,6 +3,7 @@ subprojects {
 
     version = '0.2'
     group = 'org.bot.reminder'
+    sourceCompatibility = '11'
 
     repositories {
         mavenCentral()
