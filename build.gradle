@@ -1,6 +1,5 @@
 subprojects {
     apply plugin: 'application'
-
     version = '0.2'
     group = 'org.bot.reminder'
     sourceCompatibility = '11'
@@ -11,5 +10,21 @@ subprojects {
 
     dependencies {
         testImplementation 'junit:junit:4.13.2'
+        implementation 'org.springframework.boot:spring-boot-starter-web:2.3.3.RELEASE'
+        implementation 'org.springframework.boot:spring-boot-starter:2.3.3.RELEASE'
+//        implementation 'org.springframework.boot:spring-boot-test:2.3.3.RELEASE'
+//        implementation 'org.slf4j:slf4j-api:1.7.35'
+//        testImplementation 'org.springframework.boot:spring-boot-starter-test:2.3.3.RELEASE'
+
+//        implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.35'
+//        implementation group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.35'
+//        testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.35'
+//
+//        testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.35', ext: 'pom'
+//        testImplementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
+
+
+        compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
     }
 }
