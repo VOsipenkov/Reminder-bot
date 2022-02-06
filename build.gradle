@@ -2,7 +2,10 @@ subprojects {
     apply plugin: 'application'
     version = '0.2'
     group = 'org.bot.reminder'
-    sourceCompatibility = '11'
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
 
     repositories {
         mavenCentral()
@@ -27,4 +30,6 @@ subprojects {
 
         compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
     }
+
+
 }

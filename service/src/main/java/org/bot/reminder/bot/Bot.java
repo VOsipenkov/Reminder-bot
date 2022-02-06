@@ -23,6 +23,7 @@ public class Bot extends TelegramLongPollingCommandBot {
     @PostConstruct
     public void registerCommand() {
         this.register(new StartCommand("Start", "Старт"));
+
     }
 
     @Override
