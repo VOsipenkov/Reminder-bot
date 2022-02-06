@@ -1,6 +1,7 @@
 package org.bot.reminder.bot;
 
 import lombok.extern.slf4j.Slf4j;
+import org.bot.reminder.command.custom.NonCommand;
 import org.bot.reminder.command.service.StartCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,6 @@ public class Bot extends TelegramLongPollingCommandBot {
     @PostConstruct
     public void registerCommand() {
         this.register(new StartCommand("Start", "Старт"));
-
     }
 
     @Override

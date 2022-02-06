@@ -11,7 +11,9 @@ task info {
 }
 
 dependencies {
+    implementation project(":integration")
     implementation project(":service")
+    implementation project(":data")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

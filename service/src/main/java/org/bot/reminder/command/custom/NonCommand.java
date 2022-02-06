@@ -1,4 +1,4 @@
-package org.bot.reminder.bot;
+package org.bot.reminder.command.custom;
 
 import org.springframework.stereotype.Component;
 
