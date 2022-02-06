@@ -9,7 +9,6 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 public class StartCommand extends ServiceCommand {
     private final String START_MESSAGE = "Если у вас возникнут вопросы, воспользуйтесь командой /help";
 
-
     public StartCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
     }
