@@ -21,7 +21,7 @@ abstract class ServiceCommand extends BotCommand {
         try {
             absSender.execute(message);
         } catch (TelegramApiException e) {
-            //            log.error("can't send answer");
+            log.error("ServiceCommand error for user {}, with text {}", userName, text);
             e.printStackTrace();
         }
     }

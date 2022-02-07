@@ -15,7 +15,8 @@ public class StartCommand extends ServiceCommand {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
-//        log.info("StartCommand: execute {} {}", user, chat.toString());
+        log.info("StartCommand invoked by username {}, firstname {}, lastname {}",
+            user.getUserName(), user.getFirstName(), user.getLastName());
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), user.getUserName(), START_MESSAGE);
     }
 }

@@ -23,6 +23,7 @@ public class Bot extends TelegramLongPollingCommandBot {
     public void registerCommand() {
         this.register(new StartCommand("Start", "Старт"));
         this.register(new HelpCommand("Help", "Помощь"));
+        log.info("Service commands registered");
     }
 
     @Override
