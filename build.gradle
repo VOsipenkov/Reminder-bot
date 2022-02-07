@@ -23,7 +23,8 @@ subprojects {
         implementation group: 'org.telegram', name: 'telegrambots', version: '5.7.1'
         implementation group: 'org.telegram', name: 'telegrambotsextensions', version: '5.7.1'
 
-        implementation 'org.projectlombok:lombok:1.18.22'
+        annotationProcessor 'org.projectlombok:lombok:1.18.22'
+        compileOnly 'org.projectlombok:lombok:1.18.20'
 
         testImplementation 'junit:junit:4.13.2'
         testImplementation 'org.springframework.boot:spring-boot-starter-test:2.3.3.RELEASE'
