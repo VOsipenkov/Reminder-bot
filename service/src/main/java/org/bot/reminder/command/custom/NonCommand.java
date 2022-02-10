@@ -2,7 +2,7 @@ package org.bot.reminder.command.custom;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bot.reminder.processing.MessageService;
+import org.bot.reminder.message.MessageService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 

@@ -1,4 +1,4 @@
-package org.bot.reminder.processing;
+package org.bot.reminder.message;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,8 +11,7 @@ public class MessageService {
     private final MessageWriter messageWriter;
 
     public void process(Message message) {
-        var data = messageReader.process(message);
-        //todo запомнил
-        messageWriter.responseMessage(data);
+        var result = messageReader.readMessage(message);
+        messageWriter.responseMessage(result);
     }
 }
