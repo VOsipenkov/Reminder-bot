@@ -1,17 +1,15 @@
 package org.bot.reminder.message;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
 import org.bot.reminder.dictionary.DayOfWeekDictionary;
 import org.bot.reminder.dictionary.RepeatableDictionary;
-import org.bot.reminder.util.TextPrepareService;
-import org.jvnet.hk2.annotations.Service;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-@Service
-@RequiredArgsConstructor
+@Data
+@Component
 public class DateFormatService {
-    private final TextPrepareService textPrepareService;
 
     public String getDayOfWeek(String value) {
         return DayOfWeekDictionary.getDayOfWeek(value).toString();

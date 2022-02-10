@@ -30,6 +30,7 @@ public class Task {
     @Column(name = "action")
     private String action;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_info_id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private UserInfo userInfo;
 }

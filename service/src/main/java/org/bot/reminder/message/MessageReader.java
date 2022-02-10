@@ -1,5 +1,6 @@
 package org.bot.reminder.message;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.bot.reminder.model.ResultMessage;
 import org.bot.reminder.model.Task;
@@ -8,9 +9,7 @@ import org.bot.reminder.util.TextPrepareService;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
-/**
- * This class split message to userInfo and message-text and save it in objects
- */
+@Data
 @Service
 @RequiredArgsConstructor
 public class MessageReader {

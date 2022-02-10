@@ -1,9 +1,11 @@
 package org.bot.reminder.util;
 
-import org.springframework.stereotype.Component;
+import lombok.Data;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-@Component
+@Service
+@Data
 public class TextPrepareService {
     public String prepareText(String message) {
         if (checkStartWithSlash(message)) {

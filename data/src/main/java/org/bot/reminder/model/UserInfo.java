@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -22,4 +23,10 @@ public class UserInfo {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @OneToMany(mappedBy = "user_info",
+        fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    private List<Task> task;
 }
