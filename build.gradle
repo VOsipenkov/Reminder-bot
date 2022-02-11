@@ -20,6 +20,10 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-web:2.3.3.RELEASE'
         implementation 'org.springframework.boot:spring-boot-starter:2.3.3.RELEASE'
 
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.3.3.RELEASE'
+        implementation 'com.h2database:h2:2.1.210'
+        implementation 'org.hsqldb:hsqldb:2.6.1'
+
         implementation group: 'org.telegram', name: 'telegrambots', version: '5.7.1'
         implementation group: 'org.telegram', name: 'telegrambotsextensions', version: '5.7.1'
 

@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Slf4j
-@EntityScan
+@EntityScan(basePackages = "org.bot.reminder.model")
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "org.bot.reminder.repository")
 @EnableTransactionManagement
 public class JpaConfig {
 }
