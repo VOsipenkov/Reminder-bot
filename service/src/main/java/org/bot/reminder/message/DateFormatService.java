@@ -25,6 +25,7 @@ public class DateFormatService {
     }
 
     public String getRepeateType(String value) {
-        return RepeatableDictionary.getRepeatable(value).toString();
+        var repeatableType = RepeatableDictionary.getRepeatable(value);
+        return repeatableType != null ? repeatableType.toString() : null;
     }
 }

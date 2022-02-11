@@ -10,8 +10,8 @@ public class MessageService {
     private final MessageReader messageReader;
     private final MessageWriter messageWriter;
 
-    public void process(Message message) {
+    public Message process(Message message) {
         var result = messageReader.readMessage(message);
-        messageWriter.responseMessage(result);
+        return  messageWriter.responseMessage(result, message);
     }
 }

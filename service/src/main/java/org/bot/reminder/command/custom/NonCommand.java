@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bot.reminder.message.MessageService;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Slf4j
@@ -12,8 +13,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class NonCommand {
     private final MessageService messageService;
 
-    public void processMessage(Update update) {
+    public Message processMessage(Update update) {
         log.info("NonCommand invoked with message {}", update.getMessage().getText());
-        messageService.process(update.getMessage());
+        return messageService.process(update.getMessage());
     }
 }
