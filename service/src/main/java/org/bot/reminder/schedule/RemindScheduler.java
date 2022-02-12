@@ -11,9 +11,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class RemindScheduler {
     private final TaskRepository taskRepository;
+//
+//    //9 o'clock of every day
+//    @Scheduled(cron = "0 0 9 * * *")//prod config
 
-    //8, 9 and 10 o'clock of every day
-    @Scheduled(cron = "0 0 9 * * *")
+    //"*/10 * * * * *"  every 100 sec
+    @Scheduled(cron = "*/100 * * * * *")//test config
     public void doRemind() {
         log.info("doRemind started");
     }
