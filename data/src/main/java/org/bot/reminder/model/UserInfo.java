@@ -35,6 +35,4 @@ public class UserInfo {
         orphanRemoval = true)
     @JoinColumn(name = "task")
     private Task task;
-
-
 }

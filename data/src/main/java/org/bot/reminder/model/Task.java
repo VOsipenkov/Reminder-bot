@@ -36,6 +36,9 @@ public class Task {
     @Column(name = "action")
     private String action;
 
+    @Column(name = "chat_id")
+    private Long chatId;
+
     @OneToOne(fetch = FetchType.EAGER,
     mappedBy = "task")
     private UserInfo userInfo;
