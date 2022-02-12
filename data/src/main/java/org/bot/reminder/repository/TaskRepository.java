@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends CrudRepository<Task, String> {
     List<Task> findByDayOfWeekAndIsRepeatableFalse(String dayOfWeek);
+
+    List<Task> findByIsRepeatableAndRepeatTypeIsNotNullAndRepeatTypeIn(List<String> repeateType);
 }
