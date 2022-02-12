@@ -21,6 +21,7 @@ public class MessageReader {
         var userInfo = getUserInfo(message);
         var task = getTask(message);
         task.setUserInfo(userInfo);
+        userInfo.setTask(task);
         return ResultMessage.builder()
             .userInfo(userInfo)
             .task(task).build();

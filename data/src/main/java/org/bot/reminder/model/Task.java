@@ -2,18 +2,24 @@ package org.bot.reminder.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "TASK")
+@ToString
 public class Task {
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @Column(name = "day_of_year")
     private LocalDate dayOfYear;
@@ -30,7 +36,7 @@ public class Task {
     @Column(name = "action")
     private String action;
 
-    @JoinColumn(name = "user_info_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER,
+    mappedBy = "task")
     private UserInfo userInfo;
 }

@@ -29,6 +29,6 @@ public class MessageWriter {
 
     private void save(ResultMessage resultMessage) {
         taskRepository.save(resultMessage.getTask());
-//        userInfoRepository.save(resultMessage.getUserInfo());
+        userInfoRepository.save(resultMessage.getUserInfo());
     }
 }
