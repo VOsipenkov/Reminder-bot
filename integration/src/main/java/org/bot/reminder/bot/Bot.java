@@ -40,7 +40,6 @@ public class Bot extends TelegramLongPollingCommandBot {
     public void processNonCommandUpdate(Update update) {
         var message = nonCommand.processMessage(update);
         sendAnswer(update.getMessage().getChatId(),
-            null,
             update.getMessage().getFrom().getUserName(),
             "Зарегистрировано " + message.getText());
     }
@@ -50,7 +49,8 @@ public class Bot extends TelegramLongPollingCommandBot {
         return botParams.getToken();
     }
 
-    private void sendAnswer(Long chatId, String commandName, String userName, String text) {
+    private void sendAnswer(Long chatId, String userName, String text) {
+        log.info("Send response to {}", userName);
         var message = SendMessage.builder()
             .text(text)
             .chatId(chatId.toString()).build();

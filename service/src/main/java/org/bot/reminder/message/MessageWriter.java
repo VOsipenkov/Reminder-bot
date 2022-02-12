@@ -30,5 +30,6 @@ public class MessageWriter {
     private void save(ResultMessage resultMessage) {
         taskRepository.save(resultMessage.getTask());
         userInfoRepository.save(resultMessage.getUserInfo());
+        log.info("Saved to database");
     }
 }

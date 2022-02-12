@@ -16,7 +16,7 @@ public class NonCommand {
     private final MessageWriter messageWriter;
 
     public Message processMessage(Update update) {
-        log.info("NonCommand invoked with message {}", update.getMessage().getText());
+        log.info("Start processing message {}", update.getMessage().getText());
         var message = update.getMessage();
         var result = messageReader.readMessage(message);
         return  messageWriter.responseMessage(result, message);

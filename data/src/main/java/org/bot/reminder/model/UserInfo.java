@@ -11,7 +11,7 @@ import java.util.UUID;
 @Data
 @Builder
 @Entity
-@ToString
+@ToString(exclude = {"task"})
 @Table(name = "USER_INFO")
 public class UserInfo {
     @Id
@@ -35,4 +35,6 @@ public class UserInfo {
         orphanRemoval = true)
     @JoinColumn(name = "task")
     private Task task;
+
+
 }
