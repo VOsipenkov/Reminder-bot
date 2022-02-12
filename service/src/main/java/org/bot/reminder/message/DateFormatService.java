@@ -15,8 +15,8 @@ public class DateFormatService {
         return DayOfWeekDictionary.getDayOfWeek(value).toString();
     }
 
-    public boolean isRepeatable(String value) {
-        return RepeatableDictionary.getRepeatable(value) != null;
+    public String isRepeatable(String value) {
+        return RepeatableDictionary.getRepeatable(value) != null ? Boolean.TRUE.toString(): Boolean.FALSE.toString();
     }
 
     public LocalDate getDayOfYear(String value) {

@@ -31,7 +31,7 @@ public class Task {
     private String repeatType;
 
     @Column(name = "isRepeatable")
-    private Boolean isRepeatable;
+    private String isRepeatable;
 
     @Column(name = "action")
     private String action;

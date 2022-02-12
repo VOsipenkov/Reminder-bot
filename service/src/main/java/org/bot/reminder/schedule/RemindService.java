@@ -4,33 +4,31 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bot.reminder.model.Task;
 import org.bot.reminder.repository.TaskRepository;
-import org.bot.reminder.repository.UserInfoRepository;
-import org.jvnet.hk2.annotations.Service;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.User;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static org.bot.reminder.model.Repeat.EVERY_DAY;
 import static org.bot.reminder.model.Repeat.EVERY_WEEK;
 
 @Slf4j
-@Service
+@Component
 @RequiredArgsConstructor
 public class RemindService {
     private final TaskRepository taskRepository;
-    private final UserInfoRepository userInfoRepository;
 
     public List<Message> remindSingle() {
         var tasks = taskRepository
-            .findByDayOfWeekAndIsRepeatableFalse(LocalDate.now().getDayOfWeek().toString());
+            .findByDayOfWeekAndIsRepeatable(LocalDate.now().getDayOfWeek().toString(), Boolean.FALSE.toString());
 
         var messages = tasks.parallelStream()
             .map(this::createMessageUsingTask)
-            .collect(Collectors.toList());
+            .collect(toList());
 
         taskRepository.deleteAll(tasks);
         return messages;
@@ -39,7 +37,8 @@ public class RemindService {
     public List<Message> remindRegular() {
         String dayOfWeekToday = LocalDate.now().getDayOfWeek().toString();
         var tasks = taskRepository
-            .findByIsRepeatableAndRepeatTypeIsNotNullAndRepeatTypeIn(List.of(EVERY_WEEK.toString(), EVERY_DAY.toString()));
+            .findByRepeatTypeIsNotNullAndRepeatTypeInAndIsRepeatable(
+                List.of(EVERY_WEEK.toString(), EVERY_DAY.toString()), Boolean.TRUE.toString());
 
         return tasks.stream()
             .filter(task -> {
@@ -48,7 +47,7 @@ public class RemindService {
                 }
                 return true;
             })
-            .map(this::createMessageUsingTask).collect(Collectors.toList());
+            .map(this::createMessageUsingTask).collect(toList());
     }
 
     private Message createMessageUsingTask(Task task) {

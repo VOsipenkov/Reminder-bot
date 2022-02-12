@@ -31,12 +31,10 @@ public class MessageReader {
         var userName = message.getFrom().getUserName();
         var firstName = message.getFrom().getFirstName();
         var lastName = message.getFrom().getLastName();
-        var chatId = message.getChatId();
         return UserInfo.builder()
             .userName(userName)
             .firstName(firstName)
             .lastName(lastName)
-            .chatId(chatId)
             .build();
     }
 
@@ -51,6 +49,7 @@ public class MessageReader {
         task.setIsRepeatable(dateFormatService.isRepeatable(values[0]));
         task.setRepeatType(dateFormatService.getRepeateType(values[0]));
         task.setAction(getAction(values));
+        task.setChatId(message.getChatId());
 
         return task;
     }
