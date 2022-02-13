@@ -53,6 +53,8 @@ public class DayOfWeekDictionary {
         dayOfWeekMap.put("вскр", SUNDAY);
         dayOfWeekMap.put("воскресение", SUNDAY);
         dayOfWeekMap.put("Воскресение", SUNDAY);
+        dayOfWeekMap.put("Воскресенье", SUNDAY);
+        dayOfWeekMap.put("воскресенье", SUNDAY);
     }
 
     public static DayOfWeek getDayOfWeek(String message) {

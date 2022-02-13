@@ -31,11 +31,12 @@ public class MessageReader {
         var userName = message.getFrom().getUserName();
         var firstName = message.getFrom().getFirstName();
         var lastName = message.getFrom().getLastName();
-        return UserInfo.builder()
-            .userName(userName)
-            .firstName(firstName)
-            .lastName(lastName)
-            .build();
+
+        var userInfo = new UserInfo();
+        userInfo.setUserName(userName);
+        userInfo.setFirstName(firstName);
+        userInfo.setLastName(lastName);
+        return userInfo;
     }
 
     private Task getTask(Message message) {
