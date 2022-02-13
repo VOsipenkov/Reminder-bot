@@ -23,7 +23,12 @@ public class MessageWriter {
         log.info("Task: {}", resultMessage.getTask());
         log.info("UserInfo: {}", resultMessage.getUserInfo());
         save(resultMessage);
-        message.setText(resultMessage.getTask().getAction() + " " + resultMessage.getTask().getDayOfWeek());
+        if (resultMessage.getTask().getDayOfWeek() != null) {
+            message.setText(resultMessage.getTask().getAction() + " " + resultMessage.getTask().getDayOfWeek());
+        } else {
+            message.setText(resultMessage.getTask().getAction() + " " + resultMessage.getTask().getRepeatType());
+        }
+
         return message;
     }
 

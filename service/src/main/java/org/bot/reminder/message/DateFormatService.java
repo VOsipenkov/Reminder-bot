@@ -12,11 +12,14 @@ import java.time.LocalDate;
 public class DateFormatService {
 
     public String getDayOfWeek(String value) {
-        return DayOfWeekDictionary.getDayOfWeek(value).toString();
+        if ("TRUE".equals(isRepeatable(value))) return LocalDate.now().getDayOfWeek().toString();
+
+        var dayOfWeek = DayOfWeekDictionary.getDayOfWeek(value);
+        return dayOfWeek != null ? dayOfWeek.toString() : null;
     }
 
     public String isRepeatable(String value) {
-        return RepeatableDictionary.getRepeatable(value) != null ? Boolean.TRUE.toString(): Boolean.FALSE.toString();
+        return RepeatableDictionary.getRepeatable(value) != null ? Boolean.TRUE.toString() : Boolean.FALSE.toString();
     }
 
     public LocalDate getDayOfYear(String value) {

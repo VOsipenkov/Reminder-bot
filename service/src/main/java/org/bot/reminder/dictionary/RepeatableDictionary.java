@@ -58,6 +58,8 @@ public class RepeatableDictionary {
     }
 
     public static Repeat getRepeatable(String message) {
+        if (mapRepeatable.containsKey(message)) return mapRepeatable.get(message);
+
         String[] words = message.split(" ");
         for (String word : words) {
             if (mapRepeatable.containsKey(word)) {
