@@ -5,7 +5,8 @@ reminder:
 
 spring:
   datasource:
-    url: jdbc:h2:mem:mydb
+#    url: jdbc:h2:mem:mydb   #h2-console jdbc:h2:mem:mydb
+    url: jdbc:h2:file:/data/sample
     driverClassName: org.h2.Driver
     username: sa
     password: password
@@ -13,6 +14,6 @@ spring:
   jpa:
     database-platform: "org.hibernate.dialect.H2Dialect"
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
   h2:
     console.enabled: true
