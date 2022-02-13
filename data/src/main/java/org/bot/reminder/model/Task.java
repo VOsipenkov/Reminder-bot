@@ -40,6 +40,7 @@ public class Task {
     private Long chatId;
 
     @OneToOne(fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL,
     mappedBy = "task")
     private UserInfo userInfo;
 }
