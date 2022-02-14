@@ -22,6 +22,6 @@ public class Parser {
     public static Token getRepeateType(Set<Token> tokens) {
         return tokens.stream()
             .filter(token -> Token.getRepeateTypes().contains(token))
-            .findFirst().get();
+            .findFirst().orElse(null);
     }
 }

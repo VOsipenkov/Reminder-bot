@@ -23,26 +23,24 @@ public class LexerScanner {
         Set<Token> tokens = new HashSet<>();
         text = textPrepareService.prepareText(text);
         var words = Arrays.stream(text.split(" "))
-            .map(w -> w.replaceAll(".", "").replaceAll(",", ""))
+            .map(w -> w.replace(".", "").replace(",", ""))
             .collect(Collectors.toList());
 
         words.stream()
-            .map(RepeatableDictionary::contains)
+            .filter(RepeatableDictionary::contains)
             .collect(Collectors.toSet())
             .forEach(w -> tokens.add(Token.EVERY));
 
-        words.stream()
+        tokens.addAll(words.stream()
             .map(DayOfWeekDictionary::getDayOfWeek)
             .filter(Objects::nonNull)
-            .collect(Collectors.toSet())
-            .forEach(d -> tokens.add(d));
+            .collect(Collectors.toSet()));
 
         words.stream()
             .map(RepeateTypeDictionary::getScope)
             .filter(Objects::nonNull)
             .collect(Collectors.toSet())
-            .stream().findFirst()
-            .stream().peek(w -> tokens.add(w));
+            .stream().findFirst().ifPresent(tokens::add);
 
         return tokens;
     }
