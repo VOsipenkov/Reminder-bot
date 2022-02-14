@@ -3,6 +3,7 @@ package org.bot.reminder.message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bot.reminder.model.ResultMessage;
+import org.bot.reminder.repository.DayOfWeekRepository;
 import org.bot.reminder.repository.TaskRepository;
 import org.bot.reminder.repository.UserInfoRepository;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class MessageWriter {
 
     private final TaskRepository taskRepository;
     private final UserInfoRepository userInfoRepository;
+    private final DayOfWeekRepository dayOfWeekRepository;
 
     @Transactional
     public Message responseMessage(ResultMessage resultMessage, Message message) {
@@ -35,6 +37,7 @@ public class MessageWriter {
     private void save(ResultMessage resultMessage) {
         taskRepository.save(resultMessage.getTask());
         userInfoRepository.save(resultMessage.getUserInfo());
+        dayOfWeekRepository.saveAll(resultMessage.getTask().getDayOfWeek());
         log.info("Saved to database");
     }
 }

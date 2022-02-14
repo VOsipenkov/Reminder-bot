@@ -1,5 +1,6 @@
 package org.bot.reminder.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -12,7 +13,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "DAY_OF_WEEK")
 @NoArgsConstructor
-@ToString(exclude = "task")
+@ToString(exclude = {"task"})
+@AllArgsConstructor
 public class DayOfWeek {
     @Id
     @GeneratedValue(generator = "uuid2")

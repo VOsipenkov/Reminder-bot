@@ -23,7 +23,7 @@ public class Task {
 
     @OneToMany(fetch = FetchType.EAGER,
         cascade = CascadeType.ALL,
-        mappedBy = "id")
+        mappedBy = "task")
     @Column(name = "day_of_week")
     private List<DayOfWeek> dayOfWeek;
 

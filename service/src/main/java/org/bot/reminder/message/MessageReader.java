@@ -11,10 +11,17 @@ import org.bot.reminder.parser.Parser;
 import org.bot.reminder.parser.dictionary.Token;
 import org.bot.reminder.util.TextPrepareService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static org.bot.reminder.parser.dictionary.Token.MONTH;
+import static org.bot.reminder.parser.dictionary.Token.WEEK;
 
 @Data
 @Service
@@ -68,6 +75,14 @@ public class MessageReader {
 
         task.setRepeatType(Parser.getRepeateType(tokens) != null ?
             Parser.getRepeateType(tokens).toString() : null);
+
+        if (CollectionUtils.isEmpty(task.getDayOfWeek())
+            && List.of(WEEK.toString(), MONTH.toString()).contains(task.getRepeatType())) {
+            var today = LocalDate.now().getDayOfWeek().toString();
+            var list = new ArrayList<DayOfWeek>();
+            list.add(new DayOfWeek(null, today, task));
+            task.setDayOfWeek(list);
+        }
 
         task.setAction(getAction(values));
         task.setChatId(message.getChatId());
