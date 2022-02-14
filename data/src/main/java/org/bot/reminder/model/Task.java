@@ -6,7 +6,7 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -21,11 +21,11 @@ public class Task {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @Column(name = "day_of_year")
-    private LocalDate dayOfYear;
-
+    @OneToMany(fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL,
+        mappedBy = "id")
     @Column(name = "day_of_week")
-    private String dayOfWeek;
+    private List<DayOfWeek> dayOfWeek;
 
     @Column(name = "repeate_type")
     private String repeatType;
@@ -41,6 +41,6 @@ public class Task {
 
     @OneToOne(fetch = FetchType.EAGER,
         cascade = CascadeType.ALL,
-    mappedBy = "task")
+        mappedBy = "task")
     private UserInfo userInfo;
 }

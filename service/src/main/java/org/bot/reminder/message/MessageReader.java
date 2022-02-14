@@ -2,12 +2,19 @@ package org.bot.reminder.message;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.bot.reminder.model.DayOfWeek;
 import org.bot.reminder.model.ResultMessage;
 import org.bot.reminder.model.Task;
 import org.bot.reminder.model.UserInfo;
+import org.bot.reminder.parser.LexerScanner;
+import org.bot.reminder.parser.Parser;
+import org.bot.reminder.parser.dictionary.Token;
 import org.bot.reminder.util.TextPrepareService;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @Service
@@ -15,7 +22,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 public class MessageReader {
 
     private final TextPrepareService textPrepareService;
-    private final DateFormatService dateFormatService;
+    private final LexerScanner lexerScanner;
 
     public ResultMessage readMessage(Message message) {
         var userInfo = getUserInfo(message);
@@ -45,10 +52,23 @@ public class MessageReader {
         var task = new Task();
         String[] values = text.split("  ");
 
-        task.setDayOfWeek(dateFormatService.getDayOfWeek(values[0]));
-        task.setDayOfYear(dateFormatService.getDayOfYear(values[0]));
-        task.setIsRepeatable(dateFormatService.isRepeatable(values[0]));
-        task.setRepeatType(dateFormatService.getRepeateType(values[0]));
+        Set<Token> tokens = lexerScanner.textScan(values[0]);
+
+        task.setDayOfWeek(Parser.getDaysOfWeek(tokens) != null ?
+            Parser.getDaysOfWeek(tokens).stream()
+                .map(token -> {
+                    var dayOfWeek = new DayOfWeek();
+                    dayOfWeek.setValueData(token.toString());
+                    dayOfWeek.setTask(task);
+                    return dayOfWeek;
+                }).collect(Collectors.toList()) : null);
+
+        task.setIsRepeatable(Parser.isRepeatable(tokens) != null ?
+            Parser.isRepeatable(tokens).toString() : null);
+
+        task.setRepeatType(Parser.getRepeateType(tokens) != null ?
+            Parser.getRepeateType(tokens).toString() : null);
+
         task.setAction(getAction(values));
         task.setChatId(message.getChatId());
 
