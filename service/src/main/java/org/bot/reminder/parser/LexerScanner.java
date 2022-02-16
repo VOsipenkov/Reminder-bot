@@ -1,10 +1,7 @@
 package org.bot.reminder.parser;
 
 import lombok.RequiredArgsConstructor;
-import org.bot.reminder.parser.dictionary.DayOfWeekDictionary;
-import org.bot.reminder.parser.dictionary.RepeatableDictionary;
-import org.bot.reminder.parser.dictionary.RepeateTypeDictionary;
-import org.bot.reminder.parser.dictionary.Token;
+import org.bot.reminder.parser.dictionary.*;
 import org.bot.reminder.util.TextPrepareService;
 import org.springframework.stereotype.Component;
 
@@ -41,6 +38,11 @@ public class LexerScanner {
             .filter(Objects::nonNull)
             .collect(Collectors.toSet())
             .stream().findFirst().ifPresent(tokens::add);
+
+        words.stream()
+            .filter(DateDictionary::contains)
+            .findFirst()
+            .ifPresent(w -> tokens.add(DateDictionary.getToken(w)));
 
         return tokens;
     }

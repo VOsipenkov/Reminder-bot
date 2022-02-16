@@ -11,6 +11,8 @@ public class RepeatableDictionary {
         list.add("кажд");
         list.add("Каждый");
         list.add("каждый");
+        list.add("Каждую");
+        list.add("каждую");
         list.add("Раз");
         list.add("раз");
     }

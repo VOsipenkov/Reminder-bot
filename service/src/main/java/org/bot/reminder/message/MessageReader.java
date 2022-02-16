@@ -76,6 +76,9 @@ public class MessageReader {
         task.setRepeatType(Parser.getRepeateType(tokens) != null ?
             Parser.getRepeateType(tokens).toString() : null);
 
+        task.setRepeateDate(Parser.getRepeateDate(tokens) != null ?
+            Parser.getRepeateDate(tokens).toString() : null);
+
         if (CollectionUtils.isEmpty(task.getDayOfWeek())
             && List.of(WEEK.toString(), MONTH.toString()).contains(task.getRepeatType())) {
             var today = LocalDate.now().getDayOfWeek().toString();

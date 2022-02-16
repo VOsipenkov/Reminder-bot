@@ -33,6 +33,9 @@ public class Task {
     @Column(name = "isRepeatable")
     private String isRepeatable;
 
+    @Column(name = "repeate_date")
+    private String repeateDate;
+
     @Column(name = "action")
     private String action;
 
